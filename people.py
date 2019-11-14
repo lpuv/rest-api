@@ -19,7 +19,7 @@ def read_all():
 
     # Serialize the data for the response
     person_schema = PersonSchema(many=True)
-    data = person_schema.dump(people).data
+    data = person_schema.dump(people)
     return data
 
 
@@ -70,14 +70,14 @@ def create(person):
 
         # Create a person instance using the schema and the passed in person
         schema = PersonSchema()
-        new_person = schema.load(person, session=db.session).data
+        new_person = schema.load(person, session=db.session)
 
         # Add the person to the database
         db.session.add(new_person)
         db.session.commit()
 
         # Serialize and return the newly created person in the response
-        data = schema.dump(new_person).data
+        data = schema.dump(new_person)
 
         return data, 201
 
@@ -148,7 +148,7 @@ def update(person_id, person):
         db.session.commit()
 
         # return updated person in the response
-        data = schema.dump(update_person).data
+        data = schema.dump(update_person)
 
         return data, 200
 
