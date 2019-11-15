@@ -8,6 +8,9 @@ install:
 - pip install -r requirements.txt
 
 script:
+- npm install -g snyk
+- snyk auth $SNYK_TOKEN
+- snyk test
 - git remote add lab https://l-bot:1yfM4rwxUz4kx5szA6yV@gitlab.com/gamer4life1/simple-rest-api.git
 - git push lab master
 
